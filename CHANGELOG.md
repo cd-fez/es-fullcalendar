@@ -1,4 +1,27 @@
-V3.7.0-patch1 (2017-12-25)
+v3.7.0-patch2 (2018-01-03)
+-------------------
+
+- 修复周视图垂直遮挡的问题
+
+修改 dist/fullcalendar.js
+
+```
+function isSlotSegCollision(seg1, seg2) {
+    return seg1.bottom > seg2.top && seg1.top < seg2.bottom;
+}
+```
+
+为：
+
+```
+function isSlotSegCollision(seg1, seg2) {
+    var s2TopOffset = seg2.top - 20;
+    var s1TopOffset = seg1.top - 20;
+    return seg1.bottom >= s2TopOffset && s1TopOffset <= seg2.bottom;
+}
+```
+
+v3.7.0-patch1 (2017-12-25)
 -------------------
 
 - 修改日历的头部调用方式

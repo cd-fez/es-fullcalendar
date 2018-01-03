@@ -1,11 +1,3 @@
-/** 新增了 6097 ~ 6102行
- *  if (view.name === 'agendaWeek') {
-            let segs = innerHtml.split(' ');
-            innerHtml = 
-              '<div class="week">' + segs[0] + '</div>' +
-              '<div class="day">' + segs[1] + '</div>';
-    }
- */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("jquery"), require("moment"));
@@ -13837,7 +13829,9 @@ function computeSlotSegCollisions(seg, otherSegs, results) {
 }
 // Do these segments occupy the same vertical space?
 function isSlotSegCollision(seg1, seg2) {
-    return seg1.bottom > seg2.top && seg1.top < seg2.bottom;
+    var s2TopOffset = seg2.top - 20;
+    var s1TopOffset = seg1.top - 20;
+    return seg1.bottom >= s2TopOffset && s1TopOffset <= seg2.bottom;
 }
 
 
