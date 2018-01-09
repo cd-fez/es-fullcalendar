@@ -13829,9 +13829,19 @@ function computeSlotSegCollisions(seg, otherSegs, results) {
 }
 // Do these segments occupy the same vertical space?
 function isSlotSegCollision(seg1, seg2) {
-    var s2TopOffset = seg2.top - 20;
-    var s1TopOffset = seg1.top - 20;
-    return seg1.bottom >= s2TopOffset && s1TopOffset <= seg2.bottom;
+    var s1Height = seg1.bottom - seg1.top;
+    var s2Height = seg2.bottom - seg2.top;
+    var topOffset = s1Height < s2Height ? (20 - s1Height) : (20 - s2Height);
+    var isS1TopLead = (s1Height > 20 && seg1.bottom === seg2.top);
+    var isS2TopLead = (s2Height > 20 && seg2.bottom === seg1.top);
+    if (s1Height < 20 || s2Height < 20)  {
+        if (isS1TopLead || isS2TopLead) {
+        return false;
+        }
+        return seg1.bottom > (seg2.top - topOffset) && (seg1.top - topOffset) < seg2.bottom;
+    } else {
+        return seg1.bottom > seg2.top && seg1.top < seg2.bottom;
+    }
 }
 
 
