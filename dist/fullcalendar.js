@@ -6087,7 +6087,7 @@ var DayTableMixin = /** @class */ (function (_super) {
         ];
         var innerHtml = date.format(t.colHeadFormat);
         if (view.name === 'agendaWeek') {
-            let segs = innerHtml.split(' ');
+            var segs = innerHtml.split(' ');
             innerHtml = 
               '<div class="week">' + segs[0] + '</div>' +
               '<div class="day">' + segs[1] + '</div>';

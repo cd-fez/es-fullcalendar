@@ -1,3 +1,28 @@
+v3.7.0-path4 (2018-01-10)
+-------------------
+
+- 修复let的使用问题
+
+```
+if (view.name === 'agendaWeek') {
+    let segs = innerHtml.split(' ');
+    innerHtml = 
+        '<div class="week">' + segs[0] + '</div>' +
+        '<div class="day">' + segs[1] + '</div>';
+}
+```
+
+为：
+
+```
+if (view.name === 'agendaWeek') {
+    var segs = innerHtml.split(' ');
+    innerHtml = 
+        '<div class="week">' + segs[0] + '</div>' +
+        '<div class="day">' + segs[1] + '</div>';
+}
+```
+
 v3.7.0-path3 (2018-01-09)
 -------------------
 
