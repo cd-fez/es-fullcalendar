@@ -1,3 +1,27 @@
+v3.7.0-path5 (2018-06-11)
+-------------------
+
+- 注册右键事件
+
+```
+// 新增了 6423 行
+component.bindSegHandlerToEl(el, 'contextmenu', this.handleContextMenu.bind(this))
+
+// 新增了 6468 ~ 6477 行
+EventPointing.prototype.handleContextMenu = function (seg, ev) {
+  var res = this.component.publiclyTrigger('eventContextmenu', {
+      context: seg.el[0],
+      args: [seg.footprint.getEventLegacy(), ev, this.view]
+  });
+  if (res === false) {
+      ev.preventDefault();
+  }
+};
+
+```
+
+
+
 v3.7.0-path4 (2018-01-10)
 -------------------
 
