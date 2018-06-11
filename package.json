@@ -17,7 +17,7 @@
     "jquery": "2 - 3",
     "moment": "^2.9.0"
   },
-  "version": "3.7.0-path5",
+  "version": "3.7.0-patch5",
   "releaseDate": "2017-12-25",
   "devDependencies": {
     "@types/jquery": "2.0.47",
