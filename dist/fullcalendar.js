@@ -6420,6 +6420,7 @@ var EventPointing = /** @class */ (function (_super) {
         component.bindSegHandlerToEl(el, 'click', this.handleClick.bind(this));
         component.bindSegHandlerToEl(el, 'mouseenter', this.handleMouseover.bind(this));
         component.bindSegHandlerToEl(el, 'mouseleave', this.handleMouseout.bind(this));
+        component.bindSegHandlerToEl(el, 'contextmenu', this.handleContextMenu.bind(this))
     };
     EventPointing.prototype.handleClick = function (seg, ev) {
         var res = this.component.publiclyTrigger('eventClick', {
@@ -6463,6 +6464,16 @@ var EventPointing = /** @class */ (function (_super) {
                 ]
             });
         }
+    };
+    // 添加右键
+    EventPointing.prototype.handleContextMenu = function (seg, ev) {
+      var res = this.component.publiclyTrigger('eventContextmenu', {
+          context: seg.el[0],
+          args: [seg.footprint.getEventLegacy(), ev, this.view]
+      });
+      if (res === false) {
+          ev.preventDefault();
+      }
     };
     EventPointing.prototype.end = function () {
         if (this.mousedOverSeg) {
